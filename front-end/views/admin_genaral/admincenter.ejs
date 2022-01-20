@@ -1,0 +1,172 @@
+
+
+<%- include('header'); -%>
+
+             <!-- ========================== Left Sidebar End ========================== -->
+
+
+             <div class="container-fluid">
+              <div class="row">
+               <div class="col-sm-12">
+                   <div class="iq-card">
+                      <div class="iq-card-header d-flex justify-content-between">
+                         <div class="iq-header-title">
+                            <h4 class="card-title">Editable Table</h4>
+                         </div>
+                      </div>
+                      <div class="iq-card-body">
+                         <div id="table" class="table-editable">
+                            <span class="table-add float-right mb-3 mr-2">
+                            <a href="newAdminCentre.html" class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#myModal"><i
+                               class="ri-add-fill"><span class="pl-1">Add New</span></i>
+                            </a>
+
+                            </span>
+                            <table class="table table-bordered table-responsive-md table-striped text-center">
+                               <thead>
+                                  <tr>
+                                     <th>id</th>
+                                     <th>Nom</th>
+                                     <th>Prenom</th>
+                                     <th>email</th>
+                                     <th>centre</th>
+                                     <th>Remove</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                <% if (getalladmincenter.length > 0) { %> 
+
+                                  <% getalladmincenter.forEach(function(user){ %>
+                                    
+                              <tr>
+
+                                   <td class="py-1">
+                                      <%= user.id %>
+                                   </td>
+                                   <td class="py-1">
+                                      <!-- {{nom}} -->
+                                      <%= user.nom %>
+                                  </td>
+                                  <td class="py-1">
+                                      <%= user.prenom %>
+                                  </td>
+                                  <td class="py-1">
+                                      
+                                      <%= user.email %>
+                                  </td>
+                                  <td class="py-1">
+                                      <%= user.name %>
+                                  </td>
+                                   
+                                   <td>
+                                    <form action="usercenter/delete_admincenter/<%= user.id %>" method="post">
+                                    <span class="table-remove">
+                                      <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Remove</button>
+                                    </span>
+                                    </form>
+                                 </td>
+                              </tr>
+
+                              <% }); %>
+
+                                <% } else{ %> 
+
+                                    <tr class="text-center">
+                                        <td colspan="5">No record
+                                        </td>
+                                        </tr>
+                    
+                                        
+                                    
+                                <% } %>
+                                  <!-- <tr>
+                                     <td contenteditable="true">Gio Metric</td>
+                                     <td contenteditable="true">25</td>
+                                     <td contenteditable="true">Deepends</td>
+                                     <td contenteditable="true">Spain</td>
+                                     
+                                     <td>
+                                        <span class="table-remove"><button type="button"
+                                           class="btn iq-bg-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                     </td>
+                                  </tr> -->
+                                  
+                                  
+                                  
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+
+
+
+                 
+                
+                 
+                 
+                 
+              </div>
+           </div>
+           <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Modal Heading</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+          
+                <!-- Modal body -->
+                <form action="/usercenter" method="post">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Nom:</label>
+                    <input type="text" class="form-control" name="name" id="recipient-name" value="">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Prenom:</label>
+                    <input type="text" class="form-control" name="prenom" id="recipient-name" value="">
+                  </div>
+                  <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Email:</label>
+                      <input type="text" class="form-control" name="email" id="recipient-name" value="">
+                    </div>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Password:</label>
+                      <input type="text" class="form-control" name="password" id="recipient-name" value="">
+                    </div>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Password:</label>
+                      <input type="text" class="form-control" name="passwordconfirm" id="recipient-name" value="">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Center:</label>
+                      <select class="form-control" name="center_id" id="">
+                        <% getallcenter.forEach(element => { %>
+                          <option value="<%= element.id %>"><%= element.name %> </option>
+                        <% }) %>
+                      </select>
+                    </div>
+
+                  
+                </div>
+                
+          
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">ADD</button>
+                </div>
+              </form>
+          
+              </div>
+            </div>
+        </div>
+
+
+<%- include('footer'); -%>

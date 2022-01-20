@@ -1,0 +1,122 @@
+
+
+<%- include('header'); -%>
+
+             <!-- ========================== Left Sidebar End ========================== -->
+             <div class="container-fluid">
+              <div class="row">
+               <div class="col-sm-12">
+                   <div class="iq-card">
+                      <div class="iq-card-header d-flex justify-content-between">
+                         <div class="iq-header-title">
+                            <h4 class="card-title">Editable Table</h4>
+                         </div>
+                      </div>
+                      <div class="iq-card-body">
+                         <div id="table" class="table-editable">
+                            <span class="table-add float-right mb-3 mr-2">
+                            <a href="newAdminCentre.html" class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#myModal"><i
+                               class="ri-add-fill"><span class="pl-1">add center</span></i>
+                            </a>
+
+                            </span>
+                            <table class="table table-bordered table-responsive-md table-striped text-center">
+                               <thead>
+                                  <tr>
+                                     <th>id</th>
+                                     <th>Nom</th>
+                                     <th>Remove</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                <% if (getallcenter.length > 0) { %> 
+
+                                  <% getallcenter.forEach(function(center){ %>
+                                    
+                              <tr>
+
+                                   <td class="py-1">
+                                      <%= center.id %>
+                                   </td>
+                                   <td class="py-1">
+                                      <!-- {{nom}} -->
+                                      <%= center.name %>
+                                  </td>
+                                   
+                                   <td>
+                                    <form action="center/delete_center/<%= center.id %>" method="post">
+                                    <span class="table-remove">
+                                      <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Remove</button>
+                                    </span>
+                                    </form>
+                                 </td>
+                              </tr>
+
+                              <% }); %>
+
+                                <% } else{ %> 
+
+                                    <tr class="text-center">
+                                        <td colspan="5">No record
+                                        </td>
+                                        </tr>
+                    
+                                        
+                                    
+                                <% } %>
+                                  
+                                  
+                                  
+                                  
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+
+                
+                <div class="modal" id="myModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                      <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Modal Heading</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                  <form action="/center" method="post">
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Nom:</label>
+                      <input type="text" class="form-control" name="name" id="recipient-name" value="">
+                    </div>
+  
+                    
+                  </div>
+                  
+            
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">ADD</button>
+                  </div>
+                </form>
+
+
+
+
+                 
+                
+                 
+                 
+                 
+              </div>
+           </div>
+                </div>
+
+              </div>
+
+           <%- include('footer'); -%>

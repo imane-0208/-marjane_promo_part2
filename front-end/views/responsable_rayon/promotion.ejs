@@ -1,0 +1,214 @@
+
+
+<%- include('header'); -%>
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-sm-12">
+       <div class="iq-card">
+          <div class="iq-card-header d-flex justify-content-between">
+             <div class="iq-header-title">
+                <h4 class="card-title">Promotion</h4>
+             </div>
+          </div>
+          <div class="iq-card-body">
+             <div id="table" class="table-editable">
+                <!-- <span class="table-add float-right mb-3 mr-2">
+                <a href="newAdminCentre.html" class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#myModal"><i
+                   class="ri-add-fill"><span class="pl-1">add center</span></i>
+                </a>
+
+                </span> -->
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+                        <th>Product</th>
+                        <th>Prix</th>
+                        <th>Quantite</th>
+                        <th>Pourcentage</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    <% if (getallpromotion.length > 0) { %> 
+
+                      <% getallpromotion.forEach(function(promotion){ %>
+                       
+                 <tr>
+
+                      <td class="py-1">
+                        <%= promotion.name %>
+                      </td>
+                      <td class="py-1">
+                         <!-- {{nom}} -->
+                         <%= promotion.prix %>
+                     </td>
+                     <td class="py-1">
+                      <%= promotion.quantite %>
+                     </td>
+                     <td class="py-1">
+                         
+                      <%= promotion.porcentage %>
+                     </td>
+                     <td class="py-1">
+                      <%= promotion.category %>
+                     </td>
+                      
+                      <td>
+                        <td class="py-1">
+                          <!-- {{nom}} -->
+                          <% if (promotion.status == 1) { %> 
+                            <p class="text-success">accept</p>
+                          <% } else if (promotion.status == 0){ %> 
+                            
+                            <p class="text-danger">refuse</p>
+                          <% } else{ %> 
+                            
+                            <p class="text-secundary">encoure</p>
+                        <% } %>
+                        </td> 
+                        <td class="py-1">
+
+                          <!-- <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#addadmincenter<%= promotion.id %>" data-bs-whatever="@mdo" >Replay</button> -->
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#promo<%= promotion.id %>">Action</button>
+                          <div class="modal" id="promo<%= promotion.id %>">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                          
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Modal Heading</h4>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+
+                          <form action="/updatepromotion" method="post">
+                            <div class="modal-body">
+                                    <input type="hidden" name="id" value="<%= promotion.id %>" id="">
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label">Comontaire:</label>
+                                      <textarea name="commentaire" class="form-control" cols="30" rows="10" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="comontaire" class="col-form-label">responce:</label>
+                                      <select class="form-control" name="status" id="comontaire">
+                                        <option value="1">accept</option>
+                                        <option value="0">refuse</option>
+                                      </select>
+                                    </div>
+                              
+                              
+                              
+                                
+                                
+            
+                                
+            
+                              
+                            </div>
+
+                            
+                      
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">ADD</button>
+                            </div>
+                          </form>
+                              </div>
+                            </div>
+
+                          <!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh -->
+
+
+                          <!-- <div class="modal fade" id="addadmincenter<%= promotion.id %>" tabindex="-1" aria-labelledby="addadmincenterLabel<%= promotion.id %>" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                              <form action="/updatepromotion" method="post">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="addadmincenterLabel<%= promotion.id %>">add promotion</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+            
+                                  <input type="hidden" name="id" value="<%= promotion.id %>" id="">
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label">Comontaire:</label>
+                                      <textarea name="commentaire" class="form-control" cols="30" rows="10" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label for="comontaire" class="col-form-label">Comontaire:</label>
+                                      <select class="form-control" name="status" id="comontaire">
+                                        <option value="1">accept</option>
+                                        <option value="0">refuse</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">save</button>
+                                </div>
+                              </form>
+            
+                              </div>
+                            </div>
+                          </div> -->
+
+
+                        </td> 
+                       
+                    
+                 </tr>
+
+                 <% }); %>
+
+                   <% } else{ %> 
+
+                       <tr class="text-center">
+                           <td colspan="5">No record
+                           </td>
+                           </tr>
+       
+                           
+                       
+                   <% } %>
+                     <!-- <tr>
+                        <td contenteditable="true">Gio Metric</td>
+                        <td contenteditable="true">25</td>
+                        <td contenteditable="true">Deepends</td>
+                        <td contenteditable="true">Spain</td>
+                        
+                        <td>
+                           <span class="table-remove"><button type="button"
+                              class="btn iq-bg-danger btn-rounded btn-sm my-0">Remove</button></span>
+                        </td>
+                     </tr> -->
+                     
+                     
+                     
+                  </tbody>
+               </table>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('footer'); -%>

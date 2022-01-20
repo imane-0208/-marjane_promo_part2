@@ -1,0 +1,198 @@
+
+
+<%- include('header'); -%>
+
+
+
+
+
+
+
+
+
+
+             
+
+
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-sm-12">
+      <div class="iq-card">
+         <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+               <h4 class="card-title">Editable Table</h4>
+            </div>
+         </div>
+         <div class="iq-card-body">
+            <div id="table" class="table-editable">
+               <span class="table-add float-right mb-3 mr-2">
+               <a href="newAdminCentre.html" class="btn btn-sm iq-bg-success" data-toggle="modal" data-target="#myModal"><i
+                  class="ri-add-fill"><span class="pl-1">Add New Promo</span></i>
+               </a>
+
+               </span>
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+                        <th>Product</th>
+                        <th>Prix</th>
+                        <th>Quantite</th>
+                        <th>Pourcentage</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Comment</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    <% if (getallpromotion.length > 0) { %> 
+
+                      <% getallpromotion.forEach(function(promotion){ %>
+                       
+                 <tr>
+
+                      <td class="py-1">
+                        <%= promotion.name %>
+                      </td>
+                      <td class="py-1">
+                         <!-- {{nom}} -->
+                         <%= promotion.prix %>
+                     </td>
+                     <td class="py-1">
+                      <%= promotion.quantite %>
+                     </td>
+                     <td class="py-1">
+                         
+                      <%= promotion.porcentage %>
+                     </td>
+                     <td class="py-1">
+                      <%= promotion.category %>
+                     </td>
+                      
+                      <td>
+                        <td class="py-1">
+                          <!-- {{nom}} -->
+                          <% if (promotion.status == 1) { %> 
+                            <p class="text-success">accept</p>
+                          <% } else if (promotion.status == 0){ %> 
+                            
+                            <p class="text-danger">refuse</p>
+                          <% } else{ %> 
+                            
+                            <p class="text-secundary">encoure</p>
+                        <% } %>
+                        </td> 
+                        <td class="py-1">
+                          <%= promotion.commentaire %>
+                        </td> 
+                       
+                    
+                 </tr>
+
+                 <% }); %>
+
+                   <% } else{ %> 
+
+                       <tr class="text-center">
+                           <td colspan="5">No record
+                           </td>
+                           </tr>
+       
+                           
+                       
+                   <% } %>
+                     <!-- <tr>
+                        <td contenteditable="true">Gio Metric</td>
+                        <td contenteditable="true">25</td>
+                        <td contenteditable="true">Deepends</td>
+                        <td contenteditable="true">Spain</td>
+                        
+                        <td>
+                           <span class="table-remove"><button type="button"
+                              class="btn iq-bg-danger btn-rounded btn-sm my-0">Remove</button></span>
+                        </td>
+                     </tr> -->
+                     
+                     
+                     
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+    
+   
+    
+    
+    
+ </div>
+</div>
+<div class="modal" id="myModal">
+<div class="modal-dialog">
+ <div class="modal-content">
+
+   <!-- Modal Header -->
+   <div class="modal-header">
+     <h4 class="modal-title">Modal Heading</h4>
+     <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+
+   <!-- Modal body -->
+   <form action="/promotion" method="post">
+   <div class="modal-body">
+     <div class="mb-3">
+       <label for="recipient-name" class="col-form-label">porcentage:</label>
+       <input type="number" min="0" max="50" class="form-control" id="recipient-name" name="porcentage" value="0">
+      </div>
+     <div class="mb-3">
+       <label for="message-text" class="col-form-label">Product:</label>
+       <select class="form-control" name="produit_id" id="">
+        <% getallproduct.forEach(element => { %>
+          <option value="<%= element.id %>"><%= element.name %> </option>
+        <% }) %>
+       </select>
+     </div>
+     
+
+     
+   </div>
+   
+
+   <!-- Modal footer -->
+   <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     <button type="submit" class="btn btn-primary">ADD</button>
+   </div>
+ </form>
+
+ </div>
+</div>
+</div>
+
+
+<%- include('footer'); -%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
